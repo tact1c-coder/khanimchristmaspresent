@@ -44,8 +44,8 @@ body {
     width: 150px; /* Reduced size */
     height: 150px; /* Reduced size */
     position: absolute; /* Absolute for precise positioning */
-    top: 60%; /* Position slightly below the tree */
-    left: 60%; /* Position slightly to the right of the tree */
+    top: 100%; /* Position slightly below the tree */
+    left: 100%; /* Position slightly to the right of the tree */
     transform: translate(-50%, -50%); /* Center the present based on its size */
     cursor: pointer;
     display: flex;
