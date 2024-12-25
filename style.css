@@ -39,14 +39,6 @@ body {
     object-fit: contain; 
 }
 
-/* Ribbon */
-.present::before, 
-.present::after {
-    content: '';
-    position: absolute;
-    background: #fff;
-    border-radius: 5px;
-}
 
 .present::before {
     width: 20px;
