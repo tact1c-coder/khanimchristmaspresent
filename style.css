@@ -17,7 +17,6 @@ body {
     position: relative; /* To serve as a reference for absolutely positioned children */
     width: 100%;
     height: 100%;
-    /* Remove flex properties to allow absolute positioning */
 }
 
 /* Christmas Tree */
@@ -31,6 +30,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: opacity 0.5s ease;
 }
 
 .tree-image {
@@ -43,8 +43,8 @@ body {
 .present {
     width: 150px; /* Reduced size */
     height: 150px; /* Reduced size */
-    position: absolute; /* Changed to absolute for precise positioning */
-    top: 70%; /* Position slightly below the tree */
+    position: absolute; /* Absolute for precise positioning */
+    top: 60%; /* Position slightly below the tree */
     left: 60%; /* Position slightly to the right of the tree */
     transform: translate(-50%, -50%); /* Center the present based on its size */
     cursor: pointer;
@@ -53,12 +53,19 @@ body {
     align-items: center;
     border-radius: 10px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, top 0.3s, left 0.3s;
+    transition: transform 0.3s ease, top 0.3s ease, left 0.3s ease;
     overflow: hidden; /* Prevents overflow if sprite size is larger than container */
 }
 
 .present:hover {
     transform: translate(-50%, -50%) scale(1.1);
+}
+
+.present.enlarged {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.5);
+    z-index: 2; /* Bring to front */
 }
 
 .present-image {
@@ -78,9 +85,16 @@ body {
     background: #fff;
     border-radius: 15px;
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-    animation: slideIn 0.6s ease-out;
     max-width: 300px;
     text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.letter.show {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .letter p {
@@ -90,19 +104,7 @@ body {
     line-height: 1.5;
 }
 
-/* Animations */
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translate(-50%, -60%) scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: translate(-50%, -50%) scale(1);
-    }
-}
-
-.fade-in {
-    display: block;
-    animation: slideIn 0.6s forwards;
+/* Hide Christmas Tree */
+.christmas-tree.hide {
+    opacity: 0;
 }
