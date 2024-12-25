@@ -24,13 +24,14 @@ body {
     width: 400px; /* Tree size */
     height: auto;
     position: absolute;
-    top: 15%; /* Reduced from 30% to move it slightly up */
+    top: 25%; /* Reduced from 30% to move it slightly up */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
     transition: opacity 0.5s ease;
+    z-index: 3; /* Ensure the tree is above other elements */
 }
 
 
@@ -46,7 +47,7 @@ body {
     height: 150px; /* Reduced size */
     position: absolute; /* Absolute for precise positioning */
     top: 70%; /* Position slightly below the tree */
-    left: 65%; /* Position slightly to the right of the tree */
+    left: 55%; /* Position slightly to the right of the tree */
     transform: translate(-50%, -50%); /* Center the present based on its size */
     cursor: pointer;
     display: flex;
