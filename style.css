@@ -21,10 +21,10 @@ body {
 
 /* Christmas Tree */
 .christmas-tree {
-    width: 400px; /* Increased tree size */
+    width: 400px; /* Tree size */
     height: auto;
     position: absolute;
-    top: 30%; /* Adjust as needed */
+    top: 25%; /* Reduced from 30% to move it slightly up */
     left: 50%;
     transform: translateX(-50%);
     display: flex;
@@ -32,6 +32,7 @@ body {
     align-items: center;
     transition: opacity 0.5s ease;
 }
+
 
 .tree-image {
     width: 100%;
