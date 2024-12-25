@@ -8,26 +8,50 @@
 </head>
 <body>
     <div class="container">
-    <div class="christmas-tree">
-        <img src="images/christmastree.gif" alt="Christmas Tree" class="tree-image">
+        <div class="christmas-tree">
+            <img src="images/christmastree.gif" alt="Christmas Tree" class="tree-image">
+        </div>
+        <div class="present" onclick="togglePresent()">
+            <img src="images/present.png" alt="Christmas Present" class="present-image">
+        </div>
+        <div id="letter" class="letter">
+            <p>Dear Hanna,</p>
+            <p>Wishing you the most magical Christmas and New Year filled with love, joy, and unforgettable memories. Thank you for being such an amazing part of my life!</p>
+            <p>Love, Kent </p>
+        </div>
     </div>
-    <div class="present" onclick="showLetter()">
-        <img src="images/present.png" alt="Christmas Present" class="present-image">
-    </div>
-    <div id="letter" class="letter">
-        <p>Dear Hanna,</p>
-        <p>Wishing you the most magical Christmas and New Year filled with love, joy, and unforgettable memories. Thank you for being such an amazing part of my life!</p>
-        <p>Love, Kent </p>
-    </div>
-</div>
-
 
     <script>
-        function showLetter() {
+        function togglePresent() {
+            const tree = document.querySelector('.christmas-tree');
+            const present = document.querySelector('.present');
             const letter = document.getElementById('letter');
-            if (!letter.classList.contains('fade-in')) {
+
+            // Toggle the 'enlarged' class on the present
+            present.classList.toggle('enlarged');
+
+            if (present.classList.contains('enlarged')) {
+                // Hide the tree
+                tree.style.display = 'none';
+                // Center the present
+                present.style.position = 'absolute';
+                present.style.top = '50%';
+                present.style.left = '50%';
+                present.style.transform = 'translate(-50%, -50%) scale(1.5)'; // Enlarge
+                // Show the letter
                 letter.style.display = 'block';
                 letter.classList.add('fade-in');
+            } else {
+                // Show the tree
+                tree.style.display = 'flex';
+                // Reset the present position and size
+                present.style.position = 'relative';
+                present.style.top = '0';
+                present.style.left = '0';
+                present.style.transform = 'translate(0, 0) scale(1)';
+                // Hide the letter
+                letter.style.display = 'none';
+                letter.classList.remove('fade-in');
             }
         }
     </script>
