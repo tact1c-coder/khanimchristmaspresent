@@ -58,18 +58,6 @@ body {
     height: 20px;
 }
 
-.ribbon {
-    width: 30px;
-    height: 30px;
-    background: #fff;
-    position: absolute;
-    top: -15px;
-    left: 60px;
-    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-    transform: rotate(-45deg);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-
 /* Letter */
 .letter {
     display: none;
