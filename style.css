@@ -13,9 +13,29 @@ body {
 
 /* Container */
 .container {
-    text-align: center;
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Add spacing between tree and present */
 }
 
+/* Christmas Tree */
+.christmas-tree {
+    width: 300px; /* Adjust tree size */
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tree-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain; /* Ensure the tree scales proportionally */
+}
+
+/* Present */
 .present {
     width: 200px;
     height: 200px;
@@ -33,21 +53,11 @@ body {
 .present:hover {
     transform: scale(1.1);
 }
+
 .present-image {
     width: 100%; 
     height: auto;
     object-fit: contain; 
-}
-
-
-.present::before {
-    width: 20px;
-    height: 150px;
-}
-
-.present::after {
-    width: 150px;
-    height: 20px;
 }
 
 /* Letter */
@@ -67,28 +77,6 @@ body {
     font-size: 1.2rem;
     color: #555;
     line-height: 1.5;
-}
-
-.container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 20px; /* Adjust spacing between present and tree */
-}
-
-.present, .christmas-tree {
-    width: 150px;
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.tree-image {
-    width: 100%;
-    height: auto;
-    object-fit: contain;
 }
 
 /* Animations */
