@@ -64,8 +64,8 @@ body {
 }
 
 .present.enlarged {
-    top: 50%;
-    left: 50%;
+    top: 50%; /* Center the present vertically */
+    left: 45%; /* Shift to the left to make space for the letter */
     transform: translate(-50%, -50%) scale(1.5);
     z-index: 4; /* Bring to front above the tree */
 }
@@ -81,8 +81,8 @@ body {
 .letter {
     display: none; /* Start hidden */
     position: absolute;
-    top: 60%;
-    left: 50%;
+    top: 50%; /* Align vertically with enlarged present */
+    left: 55%; /* Position to the right of present */
     transform: translate(-50%, -50%);
     padding: 20px;
     background: #fff;
@@ -91,7 +91,7 @@ body {
     max-width: 300px;
     text-align: center;
     opacity: 0;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 0.5s ease, transform 0.5s ease, left 0.5s ease;
     z-index: 5; /* Above all other elements */
 }
 
