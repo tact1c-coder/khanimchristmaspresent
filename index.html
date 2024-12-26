@@ -3,10 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Christmas Gift</title>
-    <style>
-        /* Include updated CSS here */
-    </style>
+    <title>Khanim's Christmas Gift</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -28,22 +26,32 @@
             const present = document.querySelector('.present');
             const tree = document.querySelector('.christmas-tree');
             const letter = document.getElementById('letter');
+            const container = document.querySelector('.container');
 
-            present.addEventListener('click', (event) => {
-                event.stopPropagation();
+            // Function to show the letter and enlarge the present
+            const showLetter = (event) => {
+                event.stopPropagation(); // Prevent triggering container click
                 present.classList.add('enlarged');
                 letter.classList.add('show');
                 tree.classList.add('hide');
-            });
+            };
 
-            document.addEventListener('click', () => {
+            // Function to hide the letter and reset the present
+            const hideLetter = () => {
                 if (present.classList.contains('enlarged')) {
                     present.classList.remove('enlarged');
                     letter.classList.remove('show');
                     tree.classList.remove('hide');
                 }
-            });
+            };
 
+            // Show letter when present is clicked
+            present.addEventListener('click', showLetter);
+
+            // Hide letter when clicking outside the present and letter
+            container.addEventListener('click', hideLetter);
+
+            // Prevent hiding when clicking on the letter itself
             letter.addEventListener('click', (event) => {
                 event.stopPropagation();
             });
