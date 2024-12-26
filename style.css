@@ -107,6 +107,26 @@ body {
     color: #555;
     line-height: 1.5;
 }
+/* Secret Message */
+#secret-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.2rem;
+    color: #444;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: none; /* Hidden by default */
+    z-index: 10; /* Above all other elements */
+}
+
+#secret-message.show {
+    display: block; /* Show when triggered */
+}
 
 /* Hide Christmas Tree */
 .christmas-tree.hide {
