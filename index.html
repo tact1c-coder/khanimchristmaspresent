@@ -4,56 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Interactive Christmas Gift</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Include updated CSS here */
+    </style>
 </head>
 <body>
     <div class="container">
         <div class="christmas-tree">
             <img src="images/christmastree.gif" alt="Christmas Tree" class="tree-image">
         </div>
-        <div class="present" onclick="togglePresent()">
+        <div class="present">
             <img src="images/present.png" alt="Christmas Present" class="present-image">
         </div>
         <div id="letter" class="letter">
             <p>Dear Hanna,</p>
             <p>It was really thoughtful of you to give me a present on Sunday. Unlike you, I don't have your talent of drawing -- but I can code! Here's my present for you. Wishing you the most magical Christmas and New Year filled with love, joy, and unforgettable memories. Thank you for being such an amazing part of my life!</p>
-            <p>Love, Kent </p>
+            <p>Love, Kent</p>
         </div>
     </div>
 
     <script>
-        function togglePresent() {
-            const tree = document.querySelector('.christmas-tree');
+        document.addEventListener('DOMContentLoaded', () => {
             const present = document.querySelector('.present');
+            const tree = document.querySelector('.christmas-tree');
             const letter = document.getElementById('letter');
 
-            // Toggle the 'enlarged' class on the present
-            present.classList.toggle('enlarged');
+            present.addEventListener('click', (event) => {
+                event.stopPropagation();
+                present.classList.add('enlarged');
+                letter.classList.add('show');
+                tree.classList.add('hide');
+            });
 
-            if (present.classList.contains('enlarged')) {
-                // Hide the tree
-                tree.style.display = 'none';
-                // Center the present
-                present.style.position = 'absolute';
-                present.style.top = '50%';
-                present.style.left = '50%';
-                present.style.transform = 'translate(-50%, -50%) scale(1.5)'; // Enlarge
-                // Show the letter
-                letter.style.display = 'block';
-                letter.classList.add('fade-in');
-            } else {
-                // Show the tree
-                tree.style.display = 'flex';
-                // Reset the present position and size
-                present.style.position = 'relative';
-                present.style.top = '0';
-                present.style.left = '0';
-                present.style.transform = 'translate(0, 0) scale(1)';
-                // Hide the letter
-                letter.style.display = 'none';
-                letter.classList.remove('fade-in');
-            }
-        }
+            document.addEventListener('click', () => {
+                if (present.classList.contains('enlarged')) {
+                    present.classList.remove('enlarged');
+                    letter.classList.remove('show');
+                    tree.classList.remove('hide');
+                }
+            });
+
+            letter.addEventListener('click', (event) => {
+                event.stopPropagation();
+            });
+        });
     </script>
 </body>
 </html>
