@@ -34,7 +34,7 @@
             const confettiCanvas = document.getElementById('confetti-canvas');
 
             // Initialize confetti with the canvas
-            const confetti = confetti.create(confettiCanvas, {
+            const confettiInstance = confetti.create(confettiCanvas, {
                 resize: true,
                 useWorker: true
             });
@@ -84,10 +84,11 @@
 
             // Function to trigger confetti
             const triggerConfetti = () => {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
+                confettiInstance({
+                    particleCount: 150,
+                    spread: 60,
+                    origin: { y: 0.6 },
+                    colors: ['#fde132', '#009bde', '#ff6bcb']
                 });
             };
 
