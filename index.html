@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Khanim's Christmas Gift</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Include canvas-confetti from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
     <div class="container">
@@ -19,6 +21,8 @@
             <p>It was really thoughtful of you to give me a present on Sunday. Unlike you, I don't have your talent of drawing -- but I can code! Here's my present for you. Wishing you the most magical Christmas and New Year filled with love, joy, and unforgettable memories. Thank you for being such an amazing part of my life!</p>
             <p>Love, Kent</p>
         </div>
+        <!-- Confetti Canvas -->
+        <canvas id="confetti-canvas"></canvas>
     </div>
 
     <script>
@@ -27,19 +31,46 @@
             const tree = document.querySelector('.christmas-tree');
             const letter = document.getElementById('letter');
             const container = document.querySelector('.container');
+            const confettiCanvas = document.getElementById('confetti-canvas');
 
-            // Function to show the letter and dynamically position it beside the present
+            // Initialize confetti with the canvas
+            const confetti = confetti.create(confettiCanvas, {
+                resize: true,
+                useWorker: true
+            });
+
+            // Function to show the letter, enlarge the present, and trigger confetti
             const showLetter = (event) => {
                 event.stopPropagation(); // Prevent triggering container click
+
+                // Get the bounding rectangle of the present
                 const presentRect = present.getBoundingClientRect();
 
-                // Dynamically position the letter
-                letter.style.left = `${presentRect.right + 20}px`; // Offset 20px from the present
-                letter.style.top = `${presentRect.top + presentRect.height / 2 - letter.offsetHeight / 2}px`;
+                // Dynamically position the letter beside the present
+                const letterWidth = letter.offsetWidth;
+                const letterHeight = letter.offsetHeight;
 
+                // Calculate positions
+                const offset = 20; // 20px offset from the present
+                let letterLeft = presentRect.right + offset;
+                let letterTop = presentRect.top + (presentRect.height / 2) - (letterHeight / 2);
+
+                // Ensure the letter doesn't go off the screen horizontally
+                if (letterLeft + letterWidth > window.innerWidth) {
+                    letterLeft = presentRect.left - letterWidth - offset;
+                }
+
+                // Apply positions
+                letter.style.left = `${letterLeft}px`;
+                letter.style.top = `${letterTop}px`;
+
+                // Add classes to enlarge present and show letter
                 present.classList.add('enlarged');
                 letter.classList.add('show');
                 tree.classList.add('hide');
+
+                // Trigger confetti
+                triggerConfetti();
             };
 
             // Function to hide the letter and reset the present
@@ -51,7 +82,16 @@
                 }
             };
 
-            // Show letter when present is clicked
+            // Function to trigger confetti
+            const triggerConfetti = () => {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            };
+
+            // Show letter and trigger confetti when present is clicked
             present.addEventListener('click', showLetter);
 
             // Hide letter when clicking outside the present and letter
