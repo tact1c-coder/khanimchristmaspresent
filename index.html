@@ -13,15 +13,16 @@
         <div class="christmas-tree">
             <img src="images/christmastree.gif" alt="Christmas Tree" class="tree-image">
         </div>
-        <div id="secret-message" class="hidden">if you were curious, my crush's name starts with a K :)</div>
         <div class="present">
             <img src="images/present.png" alt="Christmas Present" class="present-image">
         </div>
         <div id="letter" class="letter">
             <p>Dear Hanna,</p>
-            <p>It was really thoughtful of you to give me a present on Sunday. Unlike you, I don't have your talent of drawing -- but I can code! Here's my present for you. Wishing you the most magical Christmas and New Year filled with love, joy, and unforgettable memories. Thank you for being such an amazing part of my life!</p>
+            <p>It was really thoughtful of you to give me a present on Sunday. Unlike you, I don't have your talent of drawing -- but I can code! Here's my present for you. Wishing you the most magical Christmas and New Year filled with love, joy, and unforgettable memories. Thank you for being such an amazing part of my life! ( Btw, click the present 10 times for a secret message ;) )</p>
             <p>Love, Kent</p>
         </div>
+        <!-- Secret Message -->
+        <div id="secret-message" class="hidden">if you were curious, my crush's name starts with a K :)</div>
         <!-- Confetti Canvas -->
         <canvas id="confetti-canvas"></canvas>
     </div>
@@ -31,8 +32,9 @@
             const present = document.querySelector('.present');
             const tree = document.querySelector('.christmas-tree');
             const letter = document.getElementById('letter');
-            const container = document.querySelector('.container');
+            const secretMessage = document.getElementById('secret-message');
             const confettiCanvas = document.getElementById('confetti-canvas');
+            let clickCount = 0; // Counter for clicks
 
             // Initialize confetti with the canvas
             const confettiInstance = confetti.create(confettiCanvas, {
@@ -72,6 +74,14 @@
 
                 // Trigger confetti
                 triggerConfetti();
+
+                // Increment click counter
+                clickCount++;
+
+                // Show the secret message after 10 clicks
+                if (clickCount === 10) {
+                    showSecretMessage();
+                }
             };
 
             // Function to hide the letter and reset the present
@@ -93,10 +103,16 @@
                 });
             };
 
-            // Show letter and trigger confetti when present is clicked
+            // Function to display the secret message
+            const showSecretMessage = () => {
+                secretMessage.classList.add('show');
+            };
+
+            // Add click event listener to the present
             present.addEventListener('click', showLetter);
 
             // Hide letter when clicking outside the present and letter
+            const container = document.querySelector('.container');
             container.addEventListener('click', hideLetter);
 
             // Prevent hiding when clicking on the letter itself
