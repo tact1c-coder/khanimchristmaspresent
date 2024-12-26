@@ -9,46 +9,45 @@ body {
     align-items: center;
     height: 100vh;
     overflow: hidden;
-    position: relative; /* To position the enlarged present absolutely within the body */
+    position: relative;
 }
 
 /* Container */
 .container {
-    position: relative; /* To serve as a reference for absolutely positioned children */
+    position: relative;
     width: 100%;
     height: 100%;
 }
 
 /* Christmas Tree */
 .christmas-tree {
-    width: 400px; /* Tree size */
+    width: 400px;
     height: auto;
     position: absolute;
-    top: 25%; /* Reduced from 30% to move it slightly up */
+    top: 25%;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     justify-content: center;
     align-items: center;
     transition: opacity 0.5s ease;
-    z-index: 3; /* Ensure the tree is above other elements */
+    z-index: 3;
 }
-
 
 .tree-image {
     width: 100%;
     height: auto;
-    object-fit: contain; /* Ensure the tree scales proportionally */
+    object-fit: contain;
 }
 
 /* Present */
 .present {
-    width: 150px; /* Reduced size */
-    height: 150px; /* Reduced size */
-    position: absolute; /* Absolute for precise positioning */
-    top: 70%; /* Position slightly below the tree */
-    left: 60%; /* Position slightly to the right of the tree */
-    transform: translate(-50%, -50%); /* Center the present based on its size */
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 70%;
+    left: 60%;
+    transform: translate(-50%, -50%);
     cursor: pointer;
     display: flex;
     justify-content: center;
@@ -56,7 +55,7 @@ body {
     border-radius: 10px;
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, top 0.3s ease, left 0.3s ease;
-    overflow: hidden; /* Prevents overflow if sprite size is larger than container */
+    z-index: 2;
 }
 
 .present:hover {
@@ -67,13 +66,7 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) scale(1.5);
-    z-index: 2; /* Bring to front */
-}
-
-.present-image {
-    width: 100%; 
-    height: auto;
-    object-fit: contain; 
+    z-index: 4;
 }
 
 /* Letter */
@@ -91,6 +84,7 @@ body {
     text-align: center;
     opacity: 0;
     transition: opacity 0.5s ease, transform 0.5s ease;
+    z-index: 5;
 }
 
 .letter.show {
@@ -109,4 +103,5 @@ body {
 /* Hide Christmas Tree */
 .christmas-tree.hide {
     opacity: 0;
+    pointer-events: none;
 }
