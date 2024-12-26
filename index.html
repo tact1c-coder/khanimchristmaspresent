@@ -28,9 +28,15 @@
             const letter = document.getElementById('letter');
             const container = document.querySelector('.container');
 
-            // Function to show the letter and enlarge the present
+            // Function to show the letter and dynamically position it beside the present
             const showLetter = (event) => {
                 event.stopPropagation(); // Prevent triggering container click
+                const presentRect = present.getBoundingClientRect();
+
+                // Dynamically position the letter
+                letter.style.left = `${presentRect.right + 20}px`; // Offset 20px from the present
+                letter.style.top = `${presentRect.top + presentRect.height / 2 - letter.offsetHeight / 2}px`;
+
                 present.classList.add('enlarged');
                 letter.classList.add('show');
                 tree.classList.add('hide');
